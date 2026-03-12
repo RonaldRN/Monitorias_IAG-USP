@@ -1,0 +1,13 @@
+# Ignorar arquivos de imagem
+*.png
+*.jpg
+*.jpeg
+*.JPG
+*.PNG
+
+# Ignorar documentos PDF
+*.pdf
+
+# Ignorar arquivos NetCDF
+*.nc
+*.nc4

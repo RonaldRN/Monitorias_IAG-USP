@@ -1,4 +1,5 @@
 * ============================================================================
+*
 * Autor do código:
 *  ____   ___  _   _    _    _     ____  
 * |  _ \ / _ \| \ | |  / \  | |   |  _ \ 
@@ -27,34 +28,22 @@
 'reinit'
 'set display color white'
 'c'
-
 * ============================================================================
 * Abrir arquivo
 * ============================================================================
 'sdfopen mslp_ciclone_dec_2025.nc'
-
+* ============================================================================
+* Arquivo de saída
+* ============================================================================
+outfile = 'track_ciclone_2025.txt'
+*rc = write(outfile, 'data latitude longitude pmin_hPa')
+rc = write(outfile, 'time;Lat;Lon')
 * ============================================================================
 * Loop no tempo (n) - ALTERAR O N DE ACORDO COM SEU NUMERO DE TEMPOS DE ANALISES
 * ============================================================================
 nt=72
 n=1
-
-* ============================================================================
-* Área de busca do ciclone
-* Ajuste conforme necessário
-* ============================================================================
-lat1 = -45
-lat2 = -10
-lon1 = -65
-lon2 = -25
-* ============================================================================
-* Arquivo de saída
-* ============================================================================
-outfile = 'track_ciclone_2025.txt'
-rc = write(outfile, 'time;Lat;Lon')
-* ============================================================================
-* Loop Temporal
-* ============================================================================
+*while(n<=72)
 while(n<=nt) 
 'set t 'n
 'c'
@@ -63,16 +52,16 @@ long = 0
 latitude = 0
 longitude = 0
 * ============================================================================
-* Definir o domínio de visualização
+* Área de busca do ciclone
+* Ajuste conforme necessário
 * ============================================================================
-'set lat ' lat1 ' ' lat2
-'set lon ' lon1 ' ' lon2
+*'set lat -60 15'
+'set lat -45 -10'
+'set lon -65 -25'
 'set mpdset hires brmap'
-
-* Obter a data
 'q time'
  data=subwrd(result,3)
-
+ 
 * ==========================================
 * Transformar o formato do tempo
 * ==========================================
@@ -119,6 +108,7 @@ y=subwrd(result,4)
 'q xy2w 'x' 'y
 long=subwrd(result,3)
 lati=subwrd(result,6)
+
 * ============================================================================
 * Valor mínimo da pressão na área
 * ============================================================================
@@ -147,19 +137,22 @@ latitude=subwrd(result,4)
 * Extrair em txt
 * MOSTRA NO PROMPT DO GRADS AS COORDENADAS OBTIDAS COM O QPOS E 
 * AS OBTIDAS COM A FUNCAO AMIN - ONDE OCORRE A PRESSAO MINIMA
-* MAS GRAVA SOMENTE AS COORDENADAS OBTIDAS COM O QPOS
+* MAS GRAVA SOMENTE AS COORDENADAS DO QPOS
 * AO TERMINAR, ABRA O ARQUIVO CoordCentro.txt PARA VERIFICAR SE SALVOU CORRETAMENTE
 * ============================================================================
 * Imprimir na tela as coordenadas geográficas
 * ============================================================================
+* Variaveis extraidas: Latitude, longitude, p mínima, tempo 
 say 'centro com q pos: ' lati ' ' long
 say 'centro com min p: ' latitude ' ' longitude ' ' pmin ' ' n 
+*write('CoordCentro.txt',data ' ' latitude ' ' longitude' 'pmin)
 
 * ============================================================================
 * Salvar o arquivo .txt com a informação para o track
 * ============================================================================
 linha = data_fmt ';' lati ';' long
 rc = write(outfile, linha)
+
 n=n+1
 endwhile
 * fim do loop no tempo
@@ -168,4 +161,5 @@ rc = close(outfile)
 say ' '
 say 'Processamento finalizado.'
 say 'Saida salva em: ' outfile
+
 

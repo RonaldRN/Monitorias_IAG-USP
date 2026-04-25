@@ -2,11 +2,13 @@ import xarray as xr
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+from matplotlib.widgets import RectangleSelector
+from matplotlib.patches import Rectangle
 
 # ==========================================================
 # Configurações
 # ==========================================================
-file_nc = "equipe3_mslp.nc"
+file_nc = "/home/ronaldrn/GrADS_scripts/equipe3_mslp.nc"
 outfile = "track_ciclone_equipe3.txt"
 varname = "msl"
 
@@ -47,7 +49,7 @@ da_all = ds[varname]
 # time;Lat;Lon
 # ==========================================================
 with open(outfile, "w") as f:
-    f.write("time;Lat;Lon\n")
+    f.write("time;Lat;Lon;length;width\n")
 
 # ==========================================================
 # Loop temporal
@@ -95,33 +97,76 @@ for n in range(nt):
 
     print("\n======================================")
     print(f"Tempo {n+1}/{nt}: {time_txt}")
-    print("Clique no centro do ciclone no mapa")
+    print("Clique com o botão esquerdo, arraste a caixa e solte.")
+    print("Feche a janela se quiser pular este tempo.")
     print("======================================")
 
-    click = plt.ginput(1, timeout=-1)
+    selection = {}
 
-    if len(click) == 0:
-        print("Nenhum ponto selecionado.")
+    def onselect(eclick, erelease):
+        lon_a, lat_a = eclick.xdata, eclick.ydata
+        lon_b, lat_b = erelease.xdata, erelease.ydata
+
+        if lon_a is None or lon_b is None or lat_a is None or lat_b is None:
+            return
+
+        lon_left = min(lon_a, lon_b)
+        lon_right = max(lon_a, lon_b)
+        lat_bottom = min(lat_a, lat_b)
+        lat_top = max(lat_a, lat_b)
+
+        selection["lon_left"] = lon_left
+        selection["lon_right"] = lon_right
+        selection["lat_bottom"] = lat_bottom
+        selection["lat_top"] = lat_top
+
+        plt.close(fig)
+
+    selector = RectangleSelector(
+        ax,
+        onselect,
+        useblit=True,
+        button=[1],
+        minspanx=0.1,
+        minspany=0.1,
+        spancoords="data",
+        interactive=True
+    )
+
+    plt.show()
+
+    if not selection:
+        print("Nenhuma caixa selecionada. Pulando este tempo.")
         plt.close(fig)
         continue
 
-    lon_click, lat_click = click[0]
+    lon_left = selection["lon_left"]
+    lon_right = selection["lon_right"]
+    lat_bottom = selection["lat_bottom"]
+    lat_top = selection["lat_top"]
 
-    ax.plot(
-        lon_click,
-        lat_click,
-        marker="x",
-        color="red",
-        markersize=10
-    )
+    lon_center = (lon_left + lon_right) / 2.0
+    lat_center = (lat_bottom + lat_top) / 2.0
 
-    plt.pause(0.3)
-    plt.close(fig)
+    length = lon_right - lon_left
+    width = lat_top - lat_bottom
 
     with open(outfile, "a") as f:
-        f.write(f"{time_txt};{lat_click:.4f};{lon_click:.4f}\n")
+        f.write(
+            f"{time_txt};"
+            f"{lat_center:.4f};"
+            f"{lon_center:.4f};"
+            f"{length:.4f};"
+            f"{width:.4f}\n"
+        )
 
-    print(f"Salvo: {time_txt};{lat_click:.4f};{lon_click:.4f}")
+    print(
+        f"Salvo: {time_txt};"
+        f"{lat_center:.4f};"
+        f"{lon_center:.4f};"
+        f"{length:.4f};"
+        f"{width:.4f}"
+    )
 
 print("\nProcessamento finalizado.")
 print(f"Arquivo salvo: {outfile}")

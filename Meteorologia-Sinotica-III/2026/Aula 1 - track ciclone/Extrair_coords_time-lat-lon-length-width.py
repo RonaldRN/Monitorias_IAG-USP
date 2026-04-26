@@ -1,51 +1,84 @@
-from cProfile import label
+#!/usr/bin/env python3
+"""
+Interactive cyclone tracking tool.
+
+This script reads a NetCDF file, displays a selected meteorological field
+for each time step, and allows the user to draw a rectangular box around
+a cyclone using the mouse.
+
+For each selected box, the script saves:
+    - time
+    - centroid latitude
+    - centroid longitude
+    - box length in degrees longitude
+    - box width in degrees latitude
+
+The output file follows the format:
+
+    time;Lat;Lon;length;width
+
+Example:
+    2026-04-01-0000;-35.2500;190.5000;8.0000;6.5000
+
+The script preserves the longitude convention of the input NetCDF file:
+    - 0 to 360
+    - -180 to 180
+
+Optionally, a continent shapefile can be overlaid using pyshp.
+"""
+
+import os
+import argparse
 
 import xarray as xr
-import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import argparse
+import matplotlib.pyplot as plt
 from matplotlib.widgets import RectangleSelector
-from matplotlib.patches import Rectangle
 import shapefile
-import os
 
 # ==========================================================
 # Configurações
 # ==========================================================
 parser = argparse.ArgumentParser(
-    description="Extrair centro e dimensões de ciclones a partir de NetCDF"
+    description=(
+        "Interactively extract cyclone centroid coordinates and box "
+        "dimensions from a NetCDF file."
+    )
 )
 
 parser.add_argument(
     "file_nc",
     type=str,
-    help="Caminho do arquivo NetCDF"
+    help="Path to the input NetCDF file."
 )
 
 parser.add_argument(
     "--var",
     type=str,
     default="msl",
-    help="Nome da variável no NetCDF. Default: msl"
+    help="Variable name in the NetCDF file. Default: msl"
 )
 
 parser.add_argument(
     "--level",
     type=float,
     default=None,
-    help="Nível isobárico a selecionar, se existir dimensão vertical. Exemplo: --level 850"
+    help=(
+        "Optional pressure level to select if the dataset has a vertical "
+        "pressure-level coordinate. Example: --level 850."
+    )
 )
 
 parser.add_argument(
     "--out",
     type=str,
     default="track_ciclone.txt",
-    help="Nome do arquivo de saída (default: track_ciclone.txt)"
+    help="Name of the output file (default: track_ciclone.txt)"
 )
 
 parser.add_argument("--shp", type=str, default=None,
-                    help="Shapefile de continentes (opcional)")
+                    help="Optional continent shapefile path.")
 
 args = parser.parse_args()
 
@@ -55,19 +88,22 @@ varname = args.var
 level_value = args.level
 shp_path = args.shp
 
+# ==========================================================
+# Input checks
+# ==========================================================
 if not os.path.exists(file_nc):
-    raise FileNotFoundError(f"Arquivo não encontrado: {file_nc}")
+    raise FileNotFoundError(f"File not found: {file_nc}")
 
 if shp_path and not os.path.exists(shp_path):
-    raise FileNotFoundError(f"Shapefile não encontrado: {shp_path}")
+    raise FileNotFoundError(f"Shapefile not found: {shp_path}")
 
 # ==========================================================
-# Abrir dataset
+# Open dataset
 # ==========================================================
 ds = xr.open_dataset(file_nc)
 
 # ==========================================================
-# Selecionar nível isobárico, se solicitado
+# Select pressure level, if requested
 # ==========================================================
 if level_value is not None:
     possible_level_names = [
@@ -87,16 +123,16 @@ if level_value is not None:
 
     if level_name is None:
         raise ValueError(
-            "Você passou --level, mas não encontrei uma dimensão/coordenada "
-            "de nível isobárico no NetCDF."
+            "The --level option was used, but no pressure-level coordinate "
+            "was found in the NetCDF file."
         )
 
     ds = ds.sel({level_name: level_value}, method="nearest")
 
-    print(f"Nível selecionado: {level_name} = {float(ds[level_name].values)}")
+    print(f"Selected level: {level_name} = {float(ds[level_name].values)}")
     
 # ==========================================================
-# Detectar coordenadas automaticamente
+# Detect coordinate names automatically
 # ==========================================================
 lat_name = None
 lon_name = None
@@ -112,27 +148,61 @@ for name in ds.coords:
         time_name = name
 
 if lat_name is None or lon_name is None or time_name is None:
-    raise ValueError("Não consegui detectar lat/lon/time no NetCDF.")
+    raise ValueError(
+        "Could not automatically detect latitude, longitude, or time "
+        "coordinates in the NetCDF file."
+    )
 
+# ==========================================================
+# Domain and longitude convention
+# ==========================================================
 lat_min = float(ds[lat_name].min())
 lat_max = float(ds[lat_name].max())
 lon_min = float(ds[lon_name].min())
 lon_max = float(ds[lon_name].max())
 
-# DETECTAR FORMATO DE LONGITUDE
 use_lon_360 = lon_max > 180
-print(f"Formato de longitude detectado: {'0-360' if use_lon_360 else '-180 +180'}")
+
+print(
+    "Detected longitude convention: "
+    f"{'0-360' if use_lon_360 else '-180 to 180'}"
+)
 
 # ==========================================================
-# FUNÇÃO SHAPEFILE
+# Shapefile plotting function
 # ==========================================================
-def plot_shapefile(ax, shp_path, use_lon_360,
+def plot_shapefile(ax, 
+                   shp_path, 
+                   use_lon_360,
                    edgecolor="black",
                    linewidth=0.6, 
                    label=None):
+    """
+    Plot shapefile contours using Matplotlib.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        Axis where the shapefile contours will be drawn.
+    shp_path : str
+        Path to the shapefile.
+    use_lon_360 : bool
+        If True, shapefile longitudes are converted from -180/180 to 0/360.
+        If False, shapefile longitudes are kept or converted to -180/180.
+    edgecolor : str
+        Contour color.
+    linewidth : float
+        Contour line width.
+    label : str or None
+        Optional label for the legend. The label is added only once.
+
+    Notes
+    -----
+    The function splits line segments when large longitude jumps are detected.
+    This avoids artificial lines near the dateline.
+    """
 
     sf = shapefile.Reader(shp_path)
-
     first = True
 
     for shp in sf.shapes():
@@ -148,13 +218,14 @@ def plot_shapefile(ax, shp_path, use_lon_360,
         else:
             x = np.where(x > 180, x - 360, x)
 
+        # Split multipart geometries.
         parts = list(shp.parts) + [len(pts)]
 
         for i in range(len(parts) - 1):
             xs = x[parts[i]:parts[i+1]]
             ys = y[parts[i]:parts[i+1]]
 
-            # QUEBRAR NO DATELINE
+            # Split segments that cross the dateline after longitude conversion.
             jumps = np.abs(np.diff(xs)) > 180
 
             start = 0
@@ -177,7 +248,7 @@ def plot_shapefile(ax, shp_path, use_lon_360,
                 ax.plot(xs[start:], ys[start:], color=edgecolor, linewidth=linewidth)
 
 # ==========================================================
-# Criar arquivo de saída no padrão:
+# Prepare output file
 # time;Lat;Lon,length;width
 # ==========================================================
 nt = len(ds[time_name])
@@ -187,13 +258,13 @@ with open(outfile, "w") as f:
     f.write("time;Lat;Lon;length;width\n")
 
 # ==========================================================
-# Loop temporal
+# Time loop
 # ==========================================================
 for n in range(nt):
 
     da = da_all.isel({time_name: n})
 
-    # Converter Pa -> hPa se necessário
+    # Convert Pa to hPa when the field appears to be pressure in Pa.
     if float(da.mean()) > 2000:
         da_plot = da / 100.0
     else:
@@ -204,7 +275,7 @@ for n in range(nt):
     time_title = time_value.strftime("%HZ%d%b%Y").upper()
 
     # ======================================================
-    # Plot simples com Matplotlib
+    # Create plot
     # ======================================================
     fig, ax = plt.subplots(figsize=(7, 9))
         
@@ -231,7 +302,7 @@ for n in range(nt):
 
     ax.grid(True, linestyle="--", alpha=0.4)
 
-    # SHAPEFILE
+    # Plot optional continent shapefile
     if shp_path is not None:
         plot_shapefile(
             ax, 
@@ -244,14 +315,19 @@ for n in range(nt):
     ax.legend(loc="upper right")
 
     print("\n======================================")
-    print(f"Tempo {n+1}/{nt}: {time_txt}")
-    print("Clique com o botão esquerdo, arraste a caixa e solte.")
-    print("Feche a janela se quiser pular este tempo.")
+    print(f"Time step {n+1}/{nt}: {time_txt}")
+    print("Left-click, drag the rectangle, and release to select the cyclone box.")
+    print("Close the window to skip this time step.")
     print("======================================")
 
     selection = {}
 
     def onselect(eclick, erelease):
+        """
+        Callback executed after drawing the rectangle.
+
+        The selected box limits are stored in the 'selection' dictionary.
+        """
         lon_a, lat_a = eclick.xdata, eclick.ydata
         lon_b, lat_b = erelease.xdata, erelease.ydata
 
@@ -284,7 +360,7 @@ for n in range(nt):
     plt.show()
 
     if not selection:
-        print("Nenhuma caixa selecionada. Pulando este tempo.")
+        print("No box selected. Skipping this time step.")
         plt.close(fig)
         continue
 
@@ -293,12 +369,14 @@ for n in range(nt):
     lat_bottom = selection["lat_bottom"]
     lat_top = selection["lat_top"]
 
+    # Compute box centroid and dimensions in degrees.
     lon_center = (lon_left + lon_right) / 2.0
     lat_center = (lat_bottom + lat_top) / 2.0
 
     length = lon_right - lon_left
     width = lat_top - lat_bottom
 
+    # Save selected box information.
     with open(outfile, "a") as f:
         f.write(
             f"{time_txt};"
@@ -309,12 +387,13 @@ for n in range(nt):
         )
 
     print(
-        f"Salvo: {time_txt};"
+        f"Saved: {time_txt};"
         f"{lat_center:.4f};"
         f"{lon_center:.4f};"
         f"{length:.4f};"
         f"{width:.4f}"
     )
 
-print("\nProcessamento finalizado.")
-print(f"Arquivo salvo: {outfile}")
+
+print("\nProcessing completed.")
+print(f"Output file saved as: {outfile}")

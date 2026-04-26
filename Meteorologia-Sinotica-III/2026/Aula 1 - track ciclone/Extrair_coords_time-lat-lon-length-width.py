@@ -1,3 +1,5 @@
+from cProfile import label
+
 import xarray as xr
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -126,10 +128,12 @@ print(f"Formato de longitude detectado: {'0-360' if use_lon_360 else '-180 +180'
 # ==========================================================
 def plot_shapefile(ax, shp_path, use_lon_360,
                    edgecolor="black",
-                   linewidth=0.6
-                   ):
+                   linewidth=0.6, 
+                   label=None):
 
     sf = shapefile.Reader(shp_path)
+
+    first = True
 
     for shp in sf.shapes():
         pts = np.array(shp.points)
@@ -157,11 +161,20 @@ def plot_shapefile(ax, shp_path, use_lon_360,
 
             for j, jump in enumerate(jumps):
                 if jump:
-                    ax.plot(xs[start:j+1], ys[start:j+1], 
-                            color=edgecolor, linewidth=linewidth)
+                    if first and label is not None:
+                        ax.plot(xs[start:j+1], ys[start:j+1], 
+                                color=edgecolor, linewidth=linewidth, label=label)
+                        first = False
+                    else:
+                        ax.plot(xs[start:j+1], ys[start:j+1], 
+                                color=edgecolor, linewidth=linewidth)
                     start = j + 1
             
-            ax.plot(xs[start:], ys[start:], color=edgecolor, linewidth=linewidth)
+            if first and label is not None:
+                ax.plot(xs[start:], ys[start:], color=edgecolor, linewidth=linewidth, label=label)
+                first = False
+            else:
+                ax.plot(xs[start:], ys[start:], color=edgecolor, linewidth=linewidth)
 
 # ==========================================================
 # Criar arquivo de saída no padrão:
@@ -223,12 +236,10 @@ for n in range(nt):
         plot_shapefile(
             ax, 
             shp_path, 
-            use_lon_360, 
-            facecolor=None,  
+            use_lon_360,  
             edgecolor="red", 
             linewidth=1.5,
-            alpha=1.0,
-            label="Continent"
+            label="Continents"
             )
     ax.legend(loc="upper right")
 

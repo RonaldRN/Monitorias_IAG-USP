@@ -1,8 +1,9 @@
-# Monitoria-Meteorologia-Sinotica-IAG-USP
+# Monitoria Meteorologia Sinotica I 
 
 Repositorio dos códigos feitos em Google Colab de programação em Python de arquivos com extensão .ipynb
 
-**- Autor: Ronald Guiuseppi Ramírez Nina** [Ph.D. candidate in Atmospheric Sciences at Institute of Astronomy, Geophysics and Atmospheric Sciences - University of São Paulo (IAG-USP)] 
+**- Autor: Ronald Guiuseppi Ramírez Nina** 
+[Ph.D. candidate in Atmospheric Sciences at Institute of Astronomy, Geophysics and Atmospheric Sciences - University of São Paulo (IAG-USP)] 
 
 **- Professora da disciplina: Rita Yuri Ynoue**
 
@@ -11,4 +12,4 @@ Este repositório contém os arquivos .ipynb das aulas práticas realizadas em p
 --------------------------------------------------------------------------------------------------------------------------------
 # Download do Repositório
 
-$> git clone link_do_repositorio
+$> git clone https://github.com/RonaldRN/Monitorias_IAG-USP.git

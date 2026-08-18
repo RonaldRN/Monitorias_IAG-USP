@@ -1,4 +1,4 @@
-# Training: Python and GOES-R Imagery: Script 8 - Functions for download data from AWS
+# Training: Python and GOES-19 Imagery: Functions for download data from AWS
 #-----------------------------------------------------------------------------------------------------------
 # Required modules
 import os                                # Miscellaneous operating system interfaces

@@ -239,12 +239,14 @@ Portanto, para informações específicas, consulte sempre a pasta correspondent
 # 👨‍💻 Monitor PAE
 
 **Ronald Guiuseppi Ramírez Nina**
+
 Doutorando em Ciências Atmosféricas — IAG-USP
 Monitor/Estagiário PAE
 
-📧 **E-mail:** [ronald.ramirez.nina@usp.br](mailto:ronald.ramirez.nina@usp.br)
-📧 **E-mail:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
-🐙 **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
+* 📧 **E-mail:** [ronald.ramirez.nina@usp.br](mailto:ronald.ramirez.nina@usp.br)
+* 📧 **E-mail:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
+* 📧 **E-mail:** [ronald.ramirez.nina@gmail.com](mailto:ronald.ramirez.nina@gmail.com)
+* 🐙 **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
 
 Em caso de dúvidas relacionadas aos códigos, notebooks ou utilização dos materiais, entre em contato.
 

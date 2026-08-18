@@ -14,10 +14,10 @@ Os códigos foram disponibilizados como material complementar às atividades da 
 Doutorando em Ciências Atmosféricas — IAG/USP
 Monitor/Estagiário PAE — Meteorologia Sinótica II
 
-📧 **E-mail:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
-📧 **E-mail:** [ronald.ramirez.nina@.usp.br](mailto:ronald.ramirez.nina@usp.br)
-📧 **E-mail:** [ronald.ramirez.nina@gmail.com](mailto:ronald.ramirez.nina@gmail.com)
-🐙 **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
+* 📧 **E-mail:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
+* 📧 **E-mail:** [ronald.ramirez.nina@.usp.br](mailto:ronald.ramirez.nina@usp.br)
+* 📧 **E-mail:** [ronald.ramirez.nina@gmail.com](mailto:ronald.ramirez.nina@gmail.com)
+* 🐙 **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
 
 Em caso de dúvidas relacionadas aos códigos, execução dos notebooks ou interpretação dos produtos gerados, entrem em contato.
 

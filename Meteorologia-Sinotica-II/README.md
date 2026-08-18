@@ -4,7 +4,7 @@ Este diretório reúne **materiais computacionais de apoio à disciplina Meteoro
 
 Os códigos foram disponibilizados como material complementar às atividades da disciplina e do estágio do **Programa de Aperfeiçoamento de Ensino (PAE)**. O objetivo é auxiliar os estudantes na visualização e interpretação de diferentes sistemas e campos meteorológicos utilizados em análise sinótica.
 
-> **Observação:** este repositório constitui material de apoio e não substitui as aulas, notas de aula ou demais materiais oficiais da disciplina.
+> **Observação:** este repositório constitui material de apoio e não substitui as aulas, notas de aula ou demais materiais oficiais da disciplina. Os códigos foram desenvolvidos para ser executados na plataforma de Google-Colab, porém podem ser executados no computador pessoal do usuário.
 
 ---
 
@@ -15,6 +15,8 @@ Doutorando em Ciências Atmosféricas — IAG/USP
 Monitor/Estagiário PAE — Meteorologia Sinótica II
 
 📧 **E-mail:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
+📧 **E-mail:** [ronald.ramirez.nina@.usp.br](mailto:ronald.ramirez.nina@usp.br)
+📧 **E-mail:** [ronald.ramirez.nina@gmail.com](mailto:ronald.ramirez.nina@gmail.com)
 🐙 **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
 
 Em caso de dúvidas relacionadas aos códigos, execução dos notebooks ou interpretação dos produtos gerados, entrem em contato.

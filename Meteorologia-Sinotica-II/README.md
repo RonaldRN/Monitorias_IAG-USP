@@ -1,10 +1,10 @@
 # 🌎 Meteorologia Sinótica II — IAG/USP
 
-Este diretório reúne **materiais computacionais de apoio à disciplina Meteorologia Sinótica II (ACA0523)** do Instituto de Astronomia, Geofísica e Ciências Atmosféricas da Universidade de São Paulo (IAG-USP).
+Este diretório reúne **materiais computacionais de apoio à disciplina Meteorologia Sinótica II (ACA0523)** do Instituto de Astronomia, Geofísica e Ciências Atmosféricas da Universidade de São Paulo (**IAG-USP**).
 
-Os códigos foram disponibilizados como material complementar às atividades da disciplina e do estágio do **Programa de Aperfeiçoamento de Ensino (PAE)**. O objetivo é auxiliar os estudantes na visualização e interpretação de diferentes sistemas e campos meteorológicos utilizados em análise sinótica.
+Os códigos foram disponibilizados como material complementar às atividades da disciplina e do estágio do **Programa de Aperfeiçoamento de Ensino (PAE)**. O objetivo é auxiliar os estudantes na visualização, análise e interpretação de diferentes sistemas e campos meteorológicos utilizados em Meteorologia Sinótica.
 
-> **Observação:** este repositório constitui material de apoio e não substitui as aulas, notas de aula ou demais materiais oficiais da disciplina. Os códigos foram desenvolvidos para ser executados na plataforma de Google-Colab, porém podem ser executados no computador pessoal do usuário.
+> **Observação:** este repositório constitui material de apoio e não substitui as aulas, notas de aula ou demais materiais oficiais da disciplina. Os códigos foram desenvolvidos principalmente para execução na plataforma **Google Colab**, porém também podem ser executados localmente no computador do usuário.
 
 ---
 
@@ -14,12 +14,12 @@ Os códigos foram disponibilizados como material complementar às atividades da 
 Doutorando em Ciências Atmosféricas — IAG/USP
 Monitor/Estagiário PAE — Meteorologia Sinótica II
 
+* 📧 **E-mail:** [ronald.ramirez.nina@usp.br](mailto:ronald.ramirez.nina@usp.br)
 * 📧 **E-mail:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
-* 📧 **E-mail:** [ronald.ramirez.nina@.usp.br](mailto:ronald.ramirez.nina@usp.br)
 * 📧 **E-mail:** [ronald.ramirez.nina@gmail.com](mailto:ronald.ramirez.nina@gmail.com)
 * 🐙 **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
 
-Em caso de dúvidas relacionadas aos códigos, execução dos notebooks ou interpretação dos produtos gerados, entrem em contato.
+Em caso de dúvidas relacionadas aos códigos, à execução dos notebooks ou à interpretação dos produtos gerados, entrem em contato.
 
 ---
 
@@ -27,15 +27,65 @@ Em caso de dúvidas relacionadas aos códigos, execução dos notebooks ou inter
 
 Atualmente, a pasta `Meteorologia-Sinotica-II` contém os seguintes códigos:
 
-| Arquivo                                | Descrição                                                                                                                                                                                                                                                         |
-| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `JET_POLAR_SUBTROPICAL.ipynb`          | Elaboração de cartas sinóticas e análises destinadas à identificação do **Jato Subtropical (JST)** e do **Jato Polar (JP)**. Utiliza dados meteorológicos, incluindo campos do modelo **GFS**, e permite explorar a estrutura horizontal e vertical da atmosfera. |
-| `Synoptic_chart_Reanalysis_ERA5.ipynb` | Construção de **cartas sinóticas utilizando dados da reanálise ERA5**, permitindo visualizar e combinar diferentes campos atmosféricos para a análise de sistemas meteorológicos.                                                                                 |
-| `Synoptic_charts_GFS_analysis.ipynb`   | Construção de **cartas sinóticas a partir de dados de análise do modelo Global Forecast System (GFS)**, possibilitando a visualização de diferentes variáveis e níveis atmosféricos.                                                                              |
-| `ZCIT_GOES19_GFS.ipynb`                | Análise da **Zona de Convergência Intertropical (ZCIT)** combinando imagens do satélite **GOES-19** com campos meteorológicos provenientes do **GFS**.                                                                                                            |
-| `utilities_new_version.py`             | Conjunto de **funções auxiliares** utilizadas pelos notebooks, incluindo rotinas relacionadas ao download e processamento de dados de satélite GOES-19, transformações de coordenadas e reprojeção de dados.                                                      |
+| Arquivo                                                                                    | Descrição                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`JET_POLAR_SUBTROPICAL.ipynb`](JET_POLAR_SUBTROPICAL.ipynb)                               | Elaboração de cartas sinóticas e análises destinadas à identificação do **Jato Subtropical (JST)** e do **Jato Polar (JP)**. Utiliza campos meteorológicos do modelo **GFS** e permite explorar características da circulação atmosférica em diferentes níveis.                                                                                                                                                                                |
+| [`Synoptic_chart_Reanalysis_ERA5.ipynb`](Synoptic_chart_Reanalysis_ERA5.ipynb)             | Construção de **cartas sinóticas utilizando dados da reanálise ERA5**, permitindo visualizar e combinar diferentes campos atmosféricos para a análise de sistemas meteorológicos.                                                                                                                                                                                                                                                              |
+| [`Synoptic_charts_GFS_analysis_Part_I.ipynb`](Synoptic_charts_GFS_analysis_Part_I.ipynb)   | **Parte I da construção de cartas sinóticas utilizando análises do Global Forecast System (GFS)**. O notebook permite visualizar diferentes variáveis meteorológicas e níveis atmosféricos empregados na análise sinótica.                                                                                                                                                                                                                     |
+| [`Synoptic_charts_GFS_analysis_Part_II.ipynb`](Synoptic_charts_GFS_analysis_Part_II.ipynb) | **Parte II da construção de cartas sinóticas utilizando análises do GFS**. O notebook amplia os diagnósticos apresentados na Parte I e combina diferentes campos atmosféricos em cartas destinadas à interpretação da estrutura e evolução dos sistemas meteorológicos. A organização e o estilo de apresentação dessas cartas foram inspirados nos produtos de diagnóstico sinótico disponibilizados no **GFS Archive de Alicia M. Bentley**. |
+| [`ZCIT_GOES19_GFS.ipynb`](ZCIT_GOES19_GFS.ipynb)                                           | Análise da **Zona de Convergência Intertropical (ZCIT)** combinando imagens do satélite **GOES-19** com campos meteorológicos provenientes do **GFS**.                                                                                                                                                                                                                                                                                         |
+| [`utilities_new_version.py`](utilities_new_version.py)                                     | Conjunto de **funções auxiliares** utilizadas pelos notebooks, incluindo rotinas relacionadas ao download e processamento de dados do satélite GOES-19, transformações de coordenadas e reprojeção de dados.                                                                                                                                                                                                                                   |
 
-Os notebooks são arquivos no formato **Jupyter Notebook (`.ipynb`)**, nos quais texto explicativo, código Python e figuras podem ser executados de maneira interativa. Os códigos foram criados com o objetivo de ser executados na plataforma de Google-Colab. Porém, podem ser utilizados no computador pessoal do usuário.
+Os notebooks são arquivos no formato **Jupyter Notebook (`.ipynb`)**, nos quais texto explicativo, código Python e figuras podem ser executados de maneira interativa.
+
+Os códigos foram desenvolvidos principalmente para utilização na plataforma **Google Colab**, mas também podem ser executados localmente utilizando Jupyter Notebook, JupyterLab ou ambientes equivalentes.
+
+---
+
+# 🗺️ Cartas sinóticas GFS — Partes I e II
+
+Os notebooks:
+
+```text
+Synoptic_charts_GFS_analysis_Part_I.ipynb
+Synoptic_charts_GFS_analysis_Part_II.ipynb
+```
+
+foram desenvolvidos para auxiliar na construção e interpretação de **cartas sinóticas a partir dos campos de análise do Global Forecast System (GFS)**.
+
+A proposta é explorar como diferentes variáveis atmosféricas podem ser combinadas para diagnosticar a estrutura tridimensional da atmosfera e identificar sistemas meteorológicos relevantes.
+
+A **Parte I** apresenta um primeiro conjunto de campos e combinações utilizadas na análise sinótica.
+
+A **Parte II** amplia esses diagnósticos e utiliza uma apresentação gráfica inspirada nas cartas meteorológicas disponibilizadas no **GFS Archive de Alicia M. Bentley**, permitindo explorar diferentes combinações de campos atmosféricos de forma semelhante às utilizadas em análise meteorológica operacional e em discussões sinóticas.
+
+O objetivo não é apenas reproduzir mapas, mas compreender:
+
+* quais variáveis estão sendo representadas;
+* em quais níveis atmosféricos elas são analisadas;
+* como diferentes campos podem ser combinados;
+* quais processos dinâmicos podem ser diagnosticados;
+* e como essas informações auxiliam na interpretação da evolução dos sistemas meteorológicos.
+
+---
+
+# 📚 Créditos e referências
+
+## Alicia M. Bentley — GFS Archive
+
+A apresentação gráfica de algumas das cartas sinóticas implementadas em:
+
+```text
+Synoptic_charts_GFS_analysis_Part_II.ipynb
+```
+
+foi **inspirada nos produtos meteorológicos e diagnósticos sinóticos disponibilizados por Alicia M. Bentley, Ph.D., em seu GFS Archive**:
+
+[Alicia M. Bentley — GFS Archive](https://www.atmos.albany.edu/student/abentley/realtime/archive.php)
+
+Esse recurso apresenta mapas do **Global Forecast System (GFS)** combinando diferentes campos meteorológicos e diagnósticos dinâmicos, constituindo uma importante referência para visualização e interpretação de sistemas atmosféricos.
+
+> **Nota de autoria:** os códigos Python disponibilizados neste repositório foram desenvolvidos/adaptados para fins didáticos no contexto da monitoria PAE de Meteorologia Sinótica II do IAG-USP. A referência ao trabalho de Alicia M. Bentley corresponde à **inspiração conceitual e visual para a construção e organização de algumas das cartas sinóticas**, não implicando que os códigos deste repositório pertençam ou façam parte do GFS Archive original.
 
 ---
 
@@ -74,7 +124,8 @@ Monitorias_IAG-USP/
     │
     ├── JET_POLAR_SUBTROPICAL.ipynb
     ├── Synoptic_chart_Reanalysis_ERA5.ipynb
-    ├── Synoptic_charts_GFS_analysis.ipynb
+    ├── Synoptic_charts_GFS_analysis_Part_I.ipynb
+    ├── Synoptic_charts_GFS_analysis_Part_II.ipynb
     ├── ZCIT_GOES19_GFS.ipynb
     ├── utilities_new_version.py
     └── README.md
@@ -87,10 +138,10 @@ Monitorias_IAG-USP/
 Caso você não utilize Git:
 
 1. Acesse a página principal do repositório `Monitorias_IAG-USP`;
-2. Clique no botão verde **Code**;
-3. Selecione **Download ZIP**;
-4. Extraia o arquivo `.zip` em uma pasta de sua preferência;
-5. Entre na pasta:
+2. clique no botão verde **Code**;
+3. selecione **Download ZIP**;
+4. extraia o arquivo `.zip` em uma pasta de sua preferência;
+5. entre na pasta:
 
 ```text
 Monitorias_IAG-USP/Meteorologia-Sinotica-II/
@@ -187,13 +238,13 @@ Dependendo do notebook, são utilizados diferentes conjuntos de dados, incluindo
 * **ERA5 — ECMWF Reanalysis v5**
 * **GOES-19 — Geostationary Operational Environmental Satellite**
 
-Esses dados permitem analisar diferentes componentes da circulação atmosférica e identificar sistemas meteorológicos relevantes para Meteorologia Sinótica.
+Esses dados permitem analisar diferentes componentes da circulação atmosférica e identificar sistemas meteorológicos relevantes para a Meteorologia Sinótica.
 
 ---
 
 # 🎯 Objetivo do material
 
-Mais do que simplesmente gerar figuras, a proposta dos notebooks é ajudar os estudantes a relacionar os conceitos discutidos em sala de aula com **dados atmosféricos reais**.
+Mais do que simplesmente gerar figuras, a proposta dos notebooks é ajudar os estudantes a relacionar os conceitos discutidos em sala de aula com **dados atmosféricos reais e ferramentas computacionais de análise meteorológica**.
 
 Recomenda-se observar não apenas o resultado final de cada código, mas também:
 
@@ -201,7 +252,8 @@ Recomenda-se observar não apenas o resultado final de cada código, mas também
 * em quais níveis atmosféricos elas são analisadas;
 * como os campos são combinados em uma carta sinótica;
 * quais estruturas atmosféricas podem ser identificadas;
-* e qual é a interpretação física dos padrões observados.
+* quais processos dinâmicos estão associados aos padrões observados;
+* e qual é a interpretação física das diferentes combinações de campos.
 
 Os códigos podem ser modificados para explorar **outras datas, regiões, níveis atmosféricos e situações sinóticas**.
 
@@ -212,8 +264,9 @@ Os códigos podem ser modificados para explorar **outras datas, regiões, nívei
 Material de apoio desenvolvido no contexto das atividades de **Meteorologia Sinótica II — IAG/USP**.
 
 **Monitor PAE:** Ronald Guiuseppi Ramírez Nina
-**Contato:** 
+
+**Contato:**
+
 * [ronald.ramirez.nina@usp.br](mailto:ronald.ramirez.nina@usp.br)
 * [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
 * [ronald.ramirez.nina@gmail.com](mailto:ronald.ramirez.nina@gmail.com)
-

@@ -1,167 +1,117 @@
 # 🌎 Meteorologia Sinótica I — IAG/USP
 
 **Disciplina:** Meteorologia Sinótica I (ACA0522)  
-**Instituição:** Instituto de Astronomia, Geofísica e Ciências Atmosféricas da Universidade de São Paulo (IAG-USP)  
-**Material:** notebooks Jupyter e códigos Python de apoio didático
+**Instituição:** Instituto de Astronomia, Geofísica e Ciências Atmosféricas — Universidade de São Paulo (IAG-USP)  
+**Material:** notebooks Jupyter, rotinas Python e arquivos auxiliares para atividades práticas e monitoria
 
-Este diretório reúne materiais computacionais desenvolvidos e organizados no contexto das atividades de **monitoria e do Programa de Aperfeiçoamento de Ensino (PAE)** da disciplina **Meteorologia Sinótica I**. O objetivo é auxiliar os estudantes na elaboração de cartas sinóticas e na **visualização, identificação e interpretação de sistemas e processos atmosféricos** utilizando dados meteorológicos reais.
+Este diretório reúne materiais computacionais de apoio à disciplina **Meteorologia Sinótica I**, desenvolvidos e organizados no contexto das atividades de monitoria e do **Programa de Aperfeiçoamento de Ensino (PAE)**. O objetivo é aproximar a teoria da prática de análise meteorológica por meio de **observações de superfície, análises de modelos numéricos, reanálises e imagens de satélite**, utilizando Python para obter, visualizar e interpretar dados atmosféricos.
 
-Os materiais abordam aplicações com o **Global Forecast System (GFS)**, a **reanálise ERA5** e imagens do satélite **GOES-19**, integrando conceitos apresentados em aula e ferramentas de análise científica em Python.
-
-> **Nota didática:** este repositório oferece material complementar e **não substitui** as aulas, notas de aula ou demais materiais oficiais da disciplina. O conteúdo pode ser ampliado e atualizado ao longo das atividades de monitoria.
+> **Nota didática:** estes materiais complementam as aulas e orientações oficiais da disciplina. Serviços de dados e dependências computacionais podem mudar; consulte as primeiras células de cada notebook antes de executá-lo.
 
 ## 📑 Navegação
 
-- [Materiais disponíveis](#-materiais-disponíveis)
-- [Temas e objetivos de aprendizagem](#-temas-e-objetivos-de-aprendizagem)
-- [Como executar os notebooks](#-como-executar-os-notebooks)
-- [Instalação e dependências](#-instalação-e-dependências)
-- [Dados meteorológicos](#-dados-meteorológicos)
-- [Orientações para utilização](#-orientações-para-utilização)
+- [Notebooks e materiais disponíveis](#-notebooks-e-materiais-disponíveis)
+- [Principais temas de aprendizagem](#-principais-temas-de-aprendizagem)
+- [Execução no Google Colab](#-execução-no-google-colab)
+- [Execução local e dependências](#-execução-local-e-dependências)
+- [Fontes de dados e boas práticas](#-fontes-de-dados-e-boas-práticas)
 - [Monitor PAE e contato](#-monitor-pae-e-contato)
 
-## 📂 Materiais disponíveis
+## 📂 Notebooks e materiais disponíveis
 
-| Arquivo | Conteúdo principal |
+A pasta contém **10 notebooks Jupyter (`.ipynb`)**, um módulo Python auxiliar, duas paletas de cores (`.cpt`) e este README. Os links abaixo apontam para os arquivos reais da pasta, verificados na branch `main`.
+
+| Tema | Notebook | Objetivo didático | Execução |
+|:--|:--|:--|:--|
+| **Dados de estações do INMET** | [`Download_INMET_AWS_data.ipynb`](Download_INMET_AWS_data.ipynb) | Obtenção e exploração de dados observacionais de estações meteorológicas automáticas. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Download_INMET_AWS_data.ipynb) |
+| **Cartas sinóticas — GFS** | [`Synoptic_charts_GFS_analysis.ipynb`](Synoptic_charts_GFS_analysis.ipynb) | Elaboração de cartas sinóticas com campos atmosféricos do GFS. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Synoptic_charts_GFS_analysis.ipynb) |
+| **Cartas sinóticas — Parte I** | [`Synoptic_charts_GFS_analysis_Part-I.ipynb`](Synoptic_charts_GFS_analysis_Part-I.ipynb) | Introdução à interpretação de variáveis e campos meteorológicos do GFS. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Synoptic_charts_GFS_analysis_Part-I.ipynb) |
+| **Cartas sinóticas — Parte II** | [`Synoptic_charts_GFS_analysis_Part-II.ipynb`](Synoptic_charts_GFS_analysis_Part-II.ipynb) | Continuação das análises com cartas e combinações adicionais de campos atmosféricos. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Synoptic_charts_GFS_analysis_Part-II.ipynb) |
+| **Cartas sinóticas — ERA5** | [`Synoptic_chart_Reanalysis_ERA5.ipynb`](Synoptic_chart_Reanalysis_ERA5.ipynb) | Construção e interpretação de cartas da reanálise ERA5. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Synoptic_chart_Reanalysis_ERA5.ipynb) |
+| **Altas e baixas pressões** | [`Synoptic_charts_identification_High_Low_pressure_systems_GFS_analysis.ipynb`](Synoptic_charts_identification_High_Low_pressure_systems_GFS_analysis.ipynb) | Identificação de sistemas de alta e baixa pressão, com discussão sobre estruturas quentes e frias. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Synoptic_charts_identification_High_Low_pressure_systems_GFS_analysis.ipynb) |
+| **Análise isentrópica** | [`Isentropic_charts_GFS_analysis.ipynb`](Isentropic_charts_GFS_analysis.ipynb) | Cartas em superfícies isentrópicas para interpretar circulação, pressão e vorticidade potencial. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/Isentropic_charts_GFS_analysis.ipynb) |
+| **Jatos polar e subtropical** | [`JET_POLAR_SUBTROPICAL.ipynb`](JET_POLAR_SUBTROPICAL.ipynb) | Identificação dos jatos de altos níveis e análise da estrutura espacial da circulação. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/JET_POLAR_SUBTROPICAL.ipynb) |
+| **Jato de Baixos Níveis (SALLJ)** | [`IDENTIFICATION_SALLJ.ipynb`](IDENTIFICATION_SALLJ.ipynb) | Identificação e estudo do Jato de Baixos Níveis da América do Sul. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/IDENTIFICATION_SALLJ.ipynb) |
+| **ZCIT: GOES-19 e GFS** | [`ZCIT_GOES19_GFS.ipynb`](ZCIT_GOES19_GFS.ipynb) | Investigação da Zona de Convergência Intertropical pela combinação de imagens de satélite e campos atmosféricos. | [Abrir no Colab](https://colab.research.google.com/github/RonaldRN/Monitorias_IAG-USP/blob/main/Meteorologia-Sinotica-I/ZCIT_GOES19_GFS.ipynb) |
+
+### Arquivos auxiliares
+
+| Arquivo | Finalidade |
 |:--|:--|
-| [`JET_POLAR_SUBTROPICAL.ipynb`](JET_POLAR_SUBTROPICAL.ipynb) | Identificação e análise do **Jato Subtropical (JST)** e do **Jato Polar (JP)**. Combina campos do GFS e dados do GOES-19 e permite investigar a estrutura horizontal e vertical dos jatos por meio de seções verticais. |
-| [`Synoptic_chart_Reanalysis_ERA5.ipynb`](Synoptic_chart_Reanalysis_ERA5.ipynb) | Elaboração de **cartas sinóticas com a reanálise ERA5** e combinação de campos atmosféricos para diagnóstico e interpretação de sistemas meteorológicos. |
-| [`Synoptic_charts_GFS_analysis.ipynb`](Synoptic_charts_GFS_analysis.ipynb) | Construção de **cartas sinóticas com análises do GFS**, explorando diferentes variáveis e níveis atmosféricos. |
-| [`ZCIT_GOES19_GFS.ipynb`](ZCIT_GOES19_GFS.ipynb) | Investigação da **Zona de Convergência Intertropical (ZCIT)** pela análise conjunta de imagens do GOES-19 e campos do GFS. |
-| [`utilities_new_version.py`](utilities_new_version.py) | Funções auxiliares para acesso e processamento de dados de satélite, manipulação de arquivos e transformações ou reprojeções de coordenadas. |
+| [`utilities_new_version.py`](utilities_new_version.py) | Rotinas auxiliares, incluindo funções para paletas de cores, acesso a dados e processamento de informações geoespaciais. Disponibilize o módulo no ambiente Python quando solicitado pelos notebooks. |
+| [`IR4AVHRR6.cpt`](IR4AVHRR6.cpt) | Paleta CPT para representação gráfica de campos meteorológicos. |
+| [`SVGAWVX_TEMP.cpt`](SVGAWVX_TEMP.cpt) | Paleta CPT para visualizações de temperatura. |
 
-Os arquivos `.ipynb` são *Jupyter Notebooks*: documentos interativos que combinam código Python, explicações e figuras. O arquivo `.py` contém funções auxiliares que podem ser importadas pelos notebooks.
+## 🎯 Principais temas de aprendizagem
 
-### Organização da pasta
+### 🌡️ 1. Observações de superfície: estações automáticas do INMET
 
-```text
-Meteorologia-Sinotica-I/
-├── JET_POLAR_SUBTROPICAL.ipynb
-├── Synoptic_chart_Reanalysis_ERA5.ipynb
-├── Synoptic_charts_GFS_analysis.ipynb
-├── ZCIT_GOES19_GFS.ipynb
-├── utilities_new_version.py
-└── README.md
-```
+O notebook [`Download_INMET_AWS_data.ipynb`](Download_INMET_AWS_data.ipynb) é dedicado à obtenção e exploração de dados de **estações meteorológicas automáticas do Instituto Nacional de Meteorologia (INMET)**. Essas observações permitem associar a evolução temporal de variáveis de superfície à passagem ou à atuação de sistemas sinóticos.
 
-## 🎯 Temas e objetivos de aprendizagem
+Ao utilizar o material, recomenda-se verificar a identificação e localização da estação, o intervalo temporal, as variáveis disponíveis, as unidades, a referência de horário (UTC ou hora local) e eventuais valores ausentes. O procedimento de obtenção de dados pode depender da disponibilidade e das regras de serviços externos do INMET; consulte o código para verificar seus parâmetros específicos.
 
-### 💨 Jatos de altos níveis
+### 🗺️ 2. Cartas sinóticas com GFS e ERA5
 
-O notebook [`JET_POLAR_SUBTROPICAL.ipynb`](JET_POLAR_SUBTROPICAL.ipynb) permite explorar a posição e a estrutura dos jatos atmosféricos, com atenção especial ao **Jato Subtropical** e ao **Jato Polar**. As representações horizontais e as seções verticais auxiliam na investigação da intensidade dos ventos, da distribuição espacial dos máximos e da estrutura da circulação em altitude.
+Os notebooks de cartas sinóticas permitem representar campos meteorológicos em diferentes níveis e relacionar seus padrões espaciais aos sistemas atmosféricos. Estão disponíveis um [notebook principal do GFS](Synoptic_charts_GFS_analysis.ipynb), materiais [Parte I](Synoptic_charts_GFS_analysis_Part-I.ipynb) e [Parte II](Synoptic_charts_GFS_analysis_Part-II.ipynb), além de um [notebook com ERA5](Synoptic_chart_Reanalysis_ERA5.ipynb).
 
-### 🌦️ Cartas sinóticas com GFS e ERA5
+O [exercício de identificação de altas e baixas pressões](Synoptic_charts_identification_High_Low_pressure_systems_GFS_analysis.ipynb) complementa essa abordagem, permitindo discutir estruturas atmosféricas quentes e frias. Ao interpretar os campos, considere as diferenças entre **análises de modelos numéricos**, **previsões** e **reanálises**.
 
-Os notebooks [`Synoptic_charts_GFS_analysis.ipynb`](Synoptic_charts_GFS_analysis.ipynb) e [`Synoptic_chart_Reanalysis_ERA5.ipynb`](Synoptic_chart_Reanalysis_ERA5.ipynb) permitem elaborar cartas meteorológicas e relacionar a distribuição de diferentes campos atmosféricos com a identificação de sistemas sinóticos.
+### 💨 3. Jatos atmosféricos
 
-**GFS** é um sistema global de previsão numérica do tempo, cujas análises representam o estado estimado da atmosfera em um determinado horário. **ERA5** é uma reanálise que combina observações e modelagem numérica para produzir um conjunto espacial e temporalmente consistente de campos atmosféricos históricos.
+O notebook [`JET_POLAR_SUBTROPICAL.ipynb`](JET_POLAR_SUBTROPICAL.ipynb) aborda os **jatos polar e subtropical**, com foco em posição, intensidade e estrutura da circulação em altos níveis. O notebook [`IDENTIFICATION_SALLJ.ipynb`](IDENTIFICATION_SALLJ.ipynb) apresenta atividades relacionadas à identificação do **Jato de Baixos Níveis da América do Sul** (*South American Low-Level Jet*, SALLJ), importante para o estudo da circulação e do transporte de umidade em baixos níveis.
 
-Ao interpretar as cartas, recomenda-se observar a relação entre as variáveis representadas, a altitude ou o nível de pressão, a posição geográfica dos sistemas e os mecanismos físicos associados.
+### 🌀 4. Análise isentrópica
 
-### 🛰️ Zona de Convergência Intertropical (ZCIT)
+O notebook [`Isentropic_charts_GFS_analysis.ipynb`](Isentropic_charts_GFS_analysis.ipynb) trabalha com cartas em superfícies de temperatura potencial constante. A abordagem ajuda a examinar o escoamento tridimensional e interpretar campos de vento, pressão e vorticidade potencial em situações sinóticas.
 
-O notebook [`ZCIT_GOES19_GFS.ipynb`](ZCIT_GOES19_GFS.ipynb) combina imagens do satélite GOES-19 e informações do GFS. Essa abordagem permite comparar os padrões de nebulosidade observados por sensoriamento remoto com os campos de circulação atmosférica utilizados no diagnóstico da **ZCIT**.
+### 🛰️ 5. Zona de Convergência Intertropical
 
-### 🔧 Funções auxiliares
+O notebook [`ZCIT_GOES19_GFS.ipynb`](ZCIT_GOES19_GFS.ipynb) integra observações de nebulosidade do satélite **GOES-19** e campos do **GFS** para analisar a Zona de Convergência Intertropical (ZCIT), relacionando padrões observados e circulação atmosférica.
 
-O módulo [`utilities_new_version.py`](utilities_new_version.py) reúne rotinas de suporte, incluindo operações relacionadas aos produtos dos sensores **ABI** e **GLM** do GOES-19, ao processamento de arquivos NetCDF e à transformação ou reprojeção de coordenadas.
+## ▶️ Execução no Google Colab
 
-> **Atenção:** quando um notebook importar `utilities_new_version.py`, o arquivo precisa estar acessível ao ambiente Python — por exemplo, no mesmo diretório de execução ou em um caminho incluído no `sys.path`.
+O [Google Colab](https://colab.research.google.com/) permite executar os notebooks diretamente no navegador:
 
-## ▶️ Como executar os notebooks
+1. Na tabela acima, clique em **Abrir no Colab** ao lado do notebook desejado.
+2. Examine as células iniciais e configure datas, regiões, caminhos e fontes de dados quando necessário.
+3. Execute as células na sequência indicada, observando as instruções de instalação de bibliotecas.
+4. Caso o notebook utilize `utilities_new_version.py` ou paletas `.cpt`, certifique-se de que os arquivos estejam acessíveis na sessão.
 
-### Opção 1 — Google Colab
-
-O [Google Colab](https://colab.research.google.com/) permite executar notebooks em um ambiente Python acessado pelo navegador.
-
-1. Abra a pasta [`Meteorologia-Sinotica-I`](https://github.com/RonaldRN/Monitorias_IAG-USP/tree/main/Meteorologia-Sinotica-I) no GitHub.
-2. Selecione o notebook desejado ou abra o Colab e escolha a opção de importar um notebook do GitHub.
-3. Selecione o ambiente de execução e execute as células **na ordem apresentada**.
-4. Caso o notebook utilize o arquivo `utilities_new_version.py`, disponibilize esse módulo no ambiente de execução antes de importá-lo.
-
-Para disponibilizar os arquivos do repositório em uma sessão do Colab, uma alternativa é executar em uma célula:
+Para obter uma cópia da pasta em uma sessão **nova** do Colab, execute:
 
 ```python
 !git clone https://github.com/RonaldRN/Monitorias_IAG-USP.git
 %cd /content/Monitorias_IAG-USP/Meteorologia-Sinotica-I
 ```
 
-> A sessão do Colab é temporária: arquivos baixados e instalados no ambiente podem precisar ser preparados novamente após a reinicialização. Os comandos acima destinam-se a uma sessão em que o repositório ainda não tenha sido clonado.
+> As sessões do Colab são temporárias: arquivos e pacotes instalados podem precisar ser preparados novamente depois de uma reinicialização.
 
-### Opção 2 — Execução local (Jupyter ou VS Code)
+## 🐍 Execução local e dependências
 
-Com **Git** e um ambiente Python/Jupyter instalados, clone o repositório:
+Para trabalhar com **JupyterLab**, **Jupyter Notebook** ou **VS Code**, clone o repositório:
 
 ```bash
 git clone https://github.com/RonaldRN/Monitorias_IAG-USP.git
 cd Monitorias_IAG-USP/Meteorologia-Sinotica-I
-```
-
-Para abrir os notebooks com Jupyter, execute:
-
-```bash
 jupyter lab
 ```
 
-Também é possível utilizar `jupyter notebook` ou abrir os arquivos `.ipynb` no **Visual Studio Code**, com a extensão Jupyter.
+Caso o repositório já esteja clonado, utilize `git pull origin main` a partir da sua pasta principal para recuperar novas alterações (desde que não haja conflitos locais).
 
-### Opção 3 — Download em ZIP
+Os notebooks usam bibliotecas do ecossistema científico Python. Entre os pacotes encontrados ou mencionados nos materiais estão `numpy`, `xarray`, `matplotlib`, `cartopy`, `netCDF4`, `MetPy`, `requests`, `boto3`, `cfgrib`, `pygrib` e `GDAL`. **Nem todos são necessários em cada notebook.** Verifique as células de importação e instalação do exercício escolhido. Pacotes como `GDAL` e ferramentas para GRIB podem exigir configurações específicas do sistema operacional.
 
-Na [página principal do repositório](https://github.com/RonaldRN/Monitorias_IAG-USP), selecione **Code → Download ZIP**, extraia os arquivos e abra a pasta `Meteorologia-Sinotica-I` no programa de sua preferência.
+## 🌐 Fontes de dados e boas práticas
 
-### Atualização da cópia local
-
-Se o repositório foi clonado com Git, acesse sua pasta principal e execute:
-
-```bash
-git pull origin main
-```
-
-Esse comando recupera as atualizações disponíveis na branch `main`, desde que alterações locais não impeçam a integração.
-
-## 🐍 Instalação e dependências
-
-Os notebooks utilizam bibliotecas do ecossistema científico Python, conforme a atividade. Entre as dependências mencionadas nos materiais estão:
-
-```text
-numpy
-xarray
-matplotlib
-cartopy
-netCDF4
-MetPy
-requests
-boto3
-pygrib
-cfgrib
-GDAL
-```
-
-**Não é necessário instalar todas as bibliotecas para executar um único notebook.** Consulte as primeiras células do arquivo escolhido para verificar quais pacotes e recursos são utilizados. Em algumas situações, dependências como `pygrib`, `cfgrib` e `GDAL` exigem configuração adicional, sobretudo em ambientes locais.
-
-Algumas atividades requerem conexão com a internet para obter os dados, e o sucesso do download depende da disponibilidade do serviço externo, do período selecionado e do formato do produto meteorológico.
-
-## 🌐 Dados meteorológicos
-
-| Fonte | Tipo de dados | Aplicação didática |
+| Fonte | Tipo de informação | Aplicação |
 |:--|:--|:--|
-| **GFS** (*Global Forecast System*) | Análises e campos produzidos por modelo numérico global | Elaboração de cartas sinóticas e análise da circulação atmosférica. |
-| **ERA5** | Reanálise atmosférica | Investigação de situações meteorológicas históricas. |
-| **GOES-19** | Observações de satélite geoestacionário | Análise de nebulosidade e integração com informações dinâmicas da atmosfera. |
+| [INMET](https://portal.inmet.gov.br/) | Observações meteorológicas de superfície | Séries de estações automáticas e análise temporal. |
+| [NOAA / GFS](https://www.ncei.noaa.gov/products/weather-climate-models/global-forecast) | Modelo global, análises e previsões | Cartas sinóticas e diagnósticos da circulação atmosférica. |
+| [Copernicus / ERA5](https://cds.climate.copernicus.eu/) | Reanálise atmosférica | Estudos de situações meteorológicas históricas. |
+| [NOAA / GOES](https://www.goes-r.gov/) | Observações de satélite geoestacionário | Imagens de nebulosidade e análise de sistemas atmosféricos. |
 
-Os produtos do GOES-19 utilizados nos códigos podem envolver dados dos sensores **ABI** (*Advanced Baseline Imager*) e **GLM** (*Geostationary Lightning Mapper*), conforme a aplicação. A disponibilidade dos arquivos pode variar com a data e a fonte de acesso.
+Ao elaborar figuras e interpretar resultados, registre **fonte, data, horário, nível de pressão, domínio geográfico, resolução e unidades**. Diferencie observações, análises, previsões e reanálises. Analise também a qualidade e a cobertura dos dados; a produção da figura é apenas uma etapa do diagnóstico meteorológico.
 
-## 🧭 Orientações para utilização
-
-O propósito das atividades é **interpretar os resultados meteorologicamente**, e não apenas produzir figuras. Ao utilizar os notebooks, procure:
-
-1. Identificar a **fonte de dados**, o horário analisado e a região geográfica.
-2. Verificar as **unidades**, os níveis de pressão e o significado físico de cada variável.
-3. Examinar a combinação dos campos para reconhecer padrões de circulação e sistemas meteorológicos.
-4. Comparar as informações dos diferentes níveis atmosféricos e, quando aplicável, as observações por satélite.
-5. Registrar as hipóteses e as limitações da análise, distinguindo observações, análises de modelos e reanálises.
-
-Os notebooks podem servir como ponto de partida para explorar outras datas, domínios geográficos e configurações de visualização, respeitando a disponibilidade dos dados e as limitações do código.
+**Sugestão de roteiro de estudo:** comece pelas observações do INMET; passe às cartas do GFS e ERA5; examine estruturas de alta e baixa pressão; e avance para jatos, análise isentrópica e sensoriamento remoto. Os exercícios também podem ser usados de forma independente.
 
 ## 👨‍💻 Monitor PAE e contato
 
@@ -173,7 +123,7 @@ Monitor/Estagiário PAE — Meteorologia Sinótica I
 - **E-mail alternativo:** [ronald.ramirez.nina@alumni.usp.br](mailto:ronald.ramirez.nina@alumni.usp.br)
 - **GitHub:** [@RonaldRN](https://github.com/RonaldRN)
 
-Em caso de dúvidas relacionadas à execução dos códigos ou à interpretação dos produtos, entre em contato.
+Em caso de dúvidas sobre a execução dos notebooks, o uso das bases de dados ou a interpretação meteorológica dos resultados, entre em contato.
 
 ---
 
